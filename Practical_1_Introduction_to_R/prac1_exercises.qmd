@@ -1,0 +1,41 @@
+---
+title: "Practical_1_Introduction_to_R/prac1_exercises"
+author: "aman hussain"
+---
+
+```{r}
+round(3.14159)
+```
+
+```{r}
+print(rep(5,7))
+```
+
+```{r}
+print(rep(times = 5, x = 2))
+```
+This shows us that if you type out the actual name of the arguments for a function, you can put them in any order. Otherwise, you must put the arguments in a specific order. :)
+
+When writing a function call in RStudio, press the Tab key after the opening bracket (() to see a list of the arguments available for that function. You can then select an argument from the list rather than having to remember or type its name in full. This is particularly useful when you can’t remember the exact name of an argument.
+
+```{r}
+x <- "helllooooooo"
+y <- 5
+z <- FALSE
+
+print(class(x))
+print(class(y))
+print(class(z))
+```
+
+```{r}
+cell_id_1 <- "CX1"
+cell_id_2 <- "CX2"
+cell_id_1_treated <- TRUE
+cell_id_2_treated <- FALSE
+CX1Before <- 5415
+CX2Before <- 8123
+CX1After <- 1432
+CX2After <- 7543
+```
+
