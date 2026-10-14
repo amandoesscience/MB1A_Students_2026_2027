@@ -1,0 +1,17 @@
+---
+title: "brain data"
+author: "aman hussain"
+---
+
+Hey guys! In this document I am going to add up the regionally elevated genes in humans, pigs and mice in the **forebrain**.
+```{r}
+humans <- sum(180, 83, 57, 110)
+pigs <- sum(109, 157, 31, 45)
+mouse <- sum(55, 185, 60, 98)
+
+print(humans)
+print(pigs)
+print(mouse)
+```
+Humans have 430 regionally elevated genes, pigs have 342 and mice have 398. Therefore, **humans** have the highest number of genes with regionally elevated expression.
+
