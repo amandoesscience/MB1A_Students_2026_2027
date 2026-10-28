@@ -1,0 +1,108 @@
+---
+title: "worked example"
+editor: visual
+---
+
+```{r}
+library(gt)
+library(tidyverse)
+library(maps)
+```
+
+```{r}
+bird_breeding_sites <- read_csv("data/breeding_site_locations.csv")
+gt(bird_breeding_sites)
+```
+
+```{r}
+colnames(bird_breeding_sites)
+```
+
+```{r}
+glimpse(bird_breeding_sites)
+```
+
+```{r}
+print(nrow(bird_breeding_sites))
+print(ncol(bird_breeding_sites))
+print(dim(bird_breeding_sites))
+```
+
+```{r}
+birdmigrationsize <- read_csv("data/migratory_connectivity_dataset.csv")
+gt(head(birdmigrationsize))
+```
+
+```{r}
+glimpse(birdmigrationsize)
+
+print(nrow(birdmigrationsize))
+print(ncol(birdmigrationsize))
+```
+
+```{r}
+bird_migration_sites <- read_csv("data/migratory_connectivity_dataset.csv")
+gt(head(bird_migration_sites))
+```
+
+```{r}
+bird_migration_sites <- read_csv("data/migratory_connectivity_dataset.csv")
+gt(head(bird_migration_sites))
+
+bird_migration_selected <- bird_migration_sites |>
+  select(
+    Site,
+    winterLongitude,
+    winterLatitude,
+    pslon,
+    pslat,
+    iblon,
+    iblat,
+    awestlon,
+    awestlat
+  ) |>
+  distinct() |>
+  rename(
+    Winter_Longitude = winterLongitude,
+    Winter_Latitude = winterLatitude,
+    Stopover_Longitude = pslon,
+    Stopover_Latitude = pslat,
+    Iberian_Longitude = iblon,
+    Iberian_Latitude = iblat,
+    Westmost_Longitude = awestlon,
+    Westmost_Latitude = awestlat
+  )
+```
+
+```{r}
+bird_breeding_exc <- bird_breeding_selected |>
+  filter(Site != "Spain")
+gt(bird_breeding_exc)
+```
+
+\
+
+```{r}
+bird_migration_exc <- bird_migration_selected |>
+  filter(Site != "Spain")
+
+gt(head(bird_migration_exc))
+```
+
+```{r}
+bird_migration_grouped <- bird_migration_exc |> group_by(Site)
+
+bird_migration_summary <- bird_migration_grouped |>
+  summarise(
+    Stopover_Longitude = median(Stopover_Longitude, na.rm = TRUE),
+    Stopover_Latitude = median(Stopover_Latitude, na.rm = TRUE),
+    Iberian_Latitude = median(Iberian_Latitude, na.rm = TRUE),
+    Iberian_Longitude = median(Iberian_Longitude, na.rm = TRUE),
+    Westmost_Latitude = median(Westmost_Latitude, na.rm = TRUE),
+    Westmost_Longitude = median(Westmost_Longitude, na.rm = TRUE),
+    Winter_Latitude = median(Winter_Latitude, na.rm = TRUE),
+    Winter_Longitude = median(Winter_Longitude, na.rm = TRUE)
+)
+    
+gt(bird_migration_summary)
+```
