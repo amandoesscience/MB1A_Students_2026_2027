@@ -1,0 +1,27 @@
+---
+title: "drosophila"
+editor: visual
+---
+
+```{r}
+dcounts <- read_csv("data/drosophila_counts.csv")
+
+dros_summary <- dcounts |>
+  summarise(
+    total_nm = sum(Novel_Mutation_Count),
+    max_nm = max(Novel_Mutation_Count),
+    mean_nm = mean(Novel_Mutation_Count),
+    variance_nm = var(Novel_Mutation_Count)
+  )
+
+gt(dros_summary)
+```
+
+```{r}
+ggplot(dcounts, aes(x = Novel_Mutation_Count)) +
+  geom_bar() +
+  ggtitle("Number of Populations with Each Mutation Count - Observed") +
+  xlab("Novel mutation count") +
+  ylab("Number of populations") +
+  theme_minimal()
+```
